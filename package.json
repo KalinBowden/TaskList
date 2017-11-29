@@ -1,0 +1,23 @@
+{
+  "name": "TaskList",
+  "version": "1.0.0",
+  "description": "Final Project CIS-131 Fall 20017: An app that generates a task list using JavaScript and Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KalinBowden/TaskList.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KalinBowden/TaskList/issues"
+  },
+  "homepage": "https://github.com/KalinBowden/TaskList#readme",
+  "devDependencies": {
+    "electron": "^1.7.9"
+  }
+}
