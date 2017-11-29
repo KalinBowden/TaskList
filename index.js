@@ -3,3 +3,5 @@
     Dev:    Kalin Bowden.
     Date: 11.29.2017.
 */
+
+console.log('index.js has loaded succsefuly');
