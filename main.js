@@ -9,7 +9,7 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
-
+const ipc = electron.ipcMain;
 
 //  Create the main GUI window for the app
 app.on('ready', _=>{
@@ -44,3 +44,18 @@ const template =
             accelerator: 'ctrl+i'
         }
 ]
+
+ipc.on('countdown-start', (evt, arg) => 
+{
+    let count = 3;
+    let timer = setInterval(() =>
+    {
+        console.log('Count: ' + count);
+        mainWindow.webContents.send('countdown', count)
+        if(count === 0)
+        {
+            clearInterval(timer);
+        }
+        count--;
+    }, 1000);
+})
