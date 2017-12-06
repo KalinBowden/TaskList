@@ -8,11 +8,17 @@
         <title>My Task List</title>
 
         <!-- Soruces -->
-        
+        <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Shoping List</h1>
+        
+         <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center">Mr BeDapper</a>
+            </div>
+        </nav>
         <ul>Your List is Empty</ul>
     <script>
         const electron = require('electron')
@@ -33,7 +39,8 @@
             console.log('the item was added');
             const li = document.createElement('li');
             const itemText = document.createTextNode(item);
-            li.appendChild(itemText);
+            var outerText = '<div class="row"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+itemText+'</span><p>I am a very simple card. I am good at containing small bits of information.I am convenient because I require little markup to use effectively.</p></div><div class="card-action"><a href="#">This is a link</a><a href="#">This is a link</a></div></div></div></div>'
+            li.innerHTML= outerText;
             ul.appendChild(li);
             
         })
