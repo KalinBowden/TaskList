@@ -12,11 +12,62 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Countdown</h1>
-        <div id="count" class="countdown"></div>
-        <button class="btn" id="start">Click Me</button>
-        <input type="text" id="content">
-        <button class="btn1">Save File</button>
-        <script>require('./index.js')</script>
+        <h1>Shoping List</h1>
+        <ul>Your List is Empty</ul>
+    <script>
+        const electron = require('electron')
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+        //require('./index.js');
+
+
+        //
+        ipcRenderer.on('item:add', function(e, item)
+        {
+            console.log(ul.childNodes.length);
+            if(ul.innerHTML === 'Your List is Empty')
+            {
+                ul.innerHTML = '';
+            }
+
+            console.log('the item was added');
+            const li = document.createElement('li');
+            const itemText = document.createTextNode(item);
+            li.appendChild(itemText);
+            ul.appendChild(li);
+            
+        })
+
+
+        //
+        ipcRenderer.on('item:clear', function()
+        {
+            console.log('the list was cleared');
+            
+            ul.innerHTML = 'Your List is Empty'
+            
+        })
+
+
+        // 
+        ul.addEventListener('dblclick', removeItem)
+        
+
+        //
+        function removeItem(e)
+        {
+            if(ul.innerHTML !== 'Your List is Empty')
+            {
+                e.target.remove();
+            }
+            
+            
+            if (ul.innerHTML === '')
+            {
+                ul.innerHTML = 'Your List is Empty';
+            }
+            
+        }
+    </script>
     </body>
 </html>

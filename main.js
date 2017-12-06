@@ -17,6 +17,7 @@ const ipc = electron.ipcMain;
 //
 let mainMenu;
 let addWindow;
+let mainWindow;
 
 //  Create the main GUI window for the app
 app.on('ready', _=>{
@@ -36,6 +37,11 @@ app.on('ready', _=>{
     // Destroy window
     mainWindow.on('closed', _=>{mainWindow = null; console.log('TaskList has closed');})
 })
+
+
+//
+
+
 
 //
 //mainWindow.on('closed', _=>{app.quit();});
@@ -79,15 +85,10 @@ const template =
     {label: electron.app.getName(), submenu: 
         [
             {label: 'Add Item', click: _=>{createAddWindow()}},
-            {label: 'Clear Items'},
+            {label: 'Clear Items', click(){mainWindow.webContents.send('item:clear')}},
             {type: 'separator'}, 
             {label: 'Quit', click: _=>{app.quit()},accelerator: 'Ctrl+Q'}
-        ]},
-        {
-            label: 'Dev Tools',
-            click: function(item, focusedWindow){focusedWindow.toggleDevTools()},
-            accelerator: 'ctrl+i'
-        }
+        ]}
 ]
 
 ipc.on('countdown-start', (evt, arg) => 
@@ -116,7 +117,10 @@ if (process.env.NODE_ENV !== 'production')
             {label: 'Toggle DevTools', click(item, focusedWindow)
             {
                 focusedWindow.toggleDevTools();
-            }}
+            }},
+            {
+                role: 'reload'
+            }
         ]
     })
 }
