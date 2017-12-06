@@ -19,13 +19,16 @@ let mainMenu;
 let addWindow;
 let mainWindow;
 
+//
+
+
 //  Create the main GUI window for the app
 app.on('ready', _=>{
     // Starting-up notification
     console.log('TaskList has started');
 
     // Create the window
-    mainWindow = new BrowserWindow({ width:1000, height:650});
+    mainWindow = new BrowserWindow({ width:1000, height:650, transparent: true, frame: false, toolbar: false});
 
     //
     const menu = Menu.buildFromTemplate(template);
@@ -36,6 +39,8 @@ app.on('ready', _=>{
 
     // Destroy window
     mainWindow.on('closed', _=>{mainWindow = null; console.log('TaskList has closed');})
+
+
 })
 
 

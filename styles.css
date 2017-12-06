@@ -4,7 +4,23 @@
     Date: 11.29.2017.
 */
 
-body
+html
 {
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
+
+    background-color:rgba(152,251,152,0.3);
+    opacity: .2;
+}
+
+.btn-floating
+{
+    margin: 0.75em;
+}
+
+.sidebar
+{
+    text-align: center;
+    background-color:#bdbdbd;
+    padding-top: .75em;
+    height: max-content;
 }
