@@ -35,11 +35,30 @@ document.getElementById('add').addEventListener('click', _=>{
     ipc.send('addTask');
 });
 
-
 document.getElementById('clear').addEventListener('click', _=>{
     ipc.send('item:clear');
 });
 
 document.getElementById('close').addEventListener('click', _=>{
     ipc.send('app:close');
-})
+});
+
+document.getElementById('account').addEventListener('click', _=>{
+    ipc.send('app:account');
+});
+
+document.getElementById('download').addEventListener('click', _=>{
+    ipc.send('task:download');
+});
+
+document.getElementById('upload').addEventListener('click', _=>{
+    ipc.send('task:upload')
+});
+
+document.getElementById('refresh').addEventListener('click', _=>{
+    ipc.send('app:refresh');
+});
+
+document.getElementById('voice').addEventListener('click', _=>{
+    ipc.send('app:voice');
+});

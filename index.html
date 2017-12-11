@@ -20,9 +20,9 @@
             <div class="nav-wrapper">
             <a href="#!" class="brand-logo"><i class="material-icons">face</i>Mr BeDapper</a>
             <ul class="right">
-                <li><a><i class="material-icons">cloud_download</i></a></li>
-                <li><a><i class="material-icons" onclick="testMethod">backup</i></a></li>
-                <li><a><i class="material-icons">refresh</i></a></li>
+                <li><a><i class="material-icons" id="download">cloud_download</i></a></li>
+                <li><a><i class="material-icons" id="upload">backup</i></a></li>
+                <li><a><i class="material-icons" id="refresh">refresh</i></a></li>
                 <li><a><i class="material-icons" id="close">close</i></a></li>
             </ul>
             </div>
@@ -31,10 +31,10 @@
         <div class="row">
 
       <div class="col s1 sidebar">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">account_circle</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red" id="account"><i class="material-icons">account_circle</i></a>
         <a class="btn-floating btn-large waves-effect waves-light red" id="add"><i class="material-icons">add</i></a>
         <a class="btn-floating btn-large waves-effect waves-light red" id="clear"><i class="material-icons">delete_sweep</i></a>
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">hearing</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red" id="voice"><i class="material-icons">hearing</i></a>
       </div>
 
       <div class="col s11">
@@ -62,7 +62,7 @@
         const {ipcRenderer} = electron;
         const ul = document.querySelector('#task');
 
-        responsiveVoice.speak("Hello Jordon. I am Mr BeDapper. Your personal assistant! How may I help you today", "UK English Male", {pitch: 1});
+        responsiveVoice.speak("Hello Keerstin. I am Mr BeDapper. Your personal assistant! How may I help you today", "UK English Male", {pitch: 1});
 
         var counter = 0;
         var startInterval = setInterval(_=>
@@ -93,11 +93,6 @@
             temp = item + '';
             console.log(temp + ' task');
 
-            if (temp.nodeValue === '')
-            {
-                responsiveVoice.speak("Im sorry. But you can not add an empty task to your list!", "UK English Male", {pitch: 1});
-            }
-
             responsiveVoice.speak("The task. "+item+". was added to your list!", "UK English Male", {pitch: 1});
 
             const itemText = document.createTextNode(item);
@@ -126,9 +121,31 @@
         ipcRenderer.on('item:clear', function()
         {
             console.log('the list was cleared');
-            
+             
             ul.innerHTML = 'Your List is Empty';
+
+            responsiveVoice.speak("All task from your list have been cleared!", "UK English Male", {pitch: 1});
             
+        });
+
+        ipcRenderer.on('app:account', _=>{
+            responsiveVoice.speak("although it does not currently work. This button will eventualy allow you to create, manage, and switch between different accounts.", "UK English Male", {pitch: 1});
+        });
+
+        ipcRenderer.on('task:download', _=>{
+            responsiveVoice.speak("although it does not currently work. This button will eventualy allow you to download. a JSON file", "UK English Male", {pitch: 1});
+        });
+
+        ipcRenderer.on('task:upload', _=>{
+            responsiveVoice.speak("although it does not currently work. This button will eventualy allow you to upload. a JSON file", "UK English Male", {pitch: 1});
+        });
+
+        ipcRenderer.on('app:refresh', _=>{
+            responsiveVoice.speak("although it does not currently work. This button will eventualy allow you to refresh. the app page", "UK English Male", {pitch: 1});
+        });
+
+        ipcRenderer.on('app:voice', _=>{
+            responsiveVoice.speak("although it does not currently work. This button will eventualy allow you to. enable. or disable. my beautful voice", "UK English Male", {pitch: 1});
         })
 
 

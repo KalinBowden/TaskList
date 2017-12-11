@@ -125,4 +125,24 @@ ipc.on('item:clear', (ent, arg) =>{
 
 ipc.on('app:close', (ent, arg) => {
     app.quit();
-})
+});
+
+ipc.on('app:account', (ent, arg) => {
+    mainWindow.webContents.send('app:account');
+});
+
+ipc.on('task:download', (ent, arg) => {
+    mainWindow.webContents.send('task:download');
+});
+
+ipc.on('task:upload', (ent, arg) => {
+    mainWindow.webContents.send('task:upload');
+});
+
+ipc.on('app:voice', (ent, arg) =>{
+    mainWindow.webContents.send('app:voice');
+});
+
+ipc.on('app:refresh', (ent, arg) =>{
+    mainWindow.webContents.send('app:refresh');
+});
