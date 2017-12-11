@@ -28,7 +28,7 @@ app.on('ready', _=>{
     console.log('TaskList has started');
 
     // Create the window
-    mainWindow = new BrowserWindow({ width:1000, height:650, transparent: true, frame: false, toolbar: false});
+    mainWindow = new BrowserWindow({ width:775, height:475, transparent: true, frame: true, toolbar: true});
 
     //
     const menu = Menu.buildFromTemplate(template);
