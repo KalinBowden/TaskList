@@ -62,7 +62,7 @@ function createAddWindow()
     console.log('AddWindow has started');
 
     // Create the window
-    addWindow = new BrowserWindow({ width:450, height:300});
+    addWindow = new BrowserWindow({ width:250, height:190, transparent: false, frame: false});
 
     //
     const menu = Menu.buildFromTemplate(template);
@@ -81,7 +81,6 @@ ipc.on('item:add', function(e, item)
     console.log(item);
     mainWindow.webContents.send('item:add', item)
     addWindow.close();
-    
 })
 
 
@@ -101,7 +100,6 @@ ipc.on('countdown-start', (evt, arg) =>
     let count = 3;
     let timer = setInterval(() =>
     {
-        console.log('Count: ' + count);
         mainWindow.webContents.send('countdown', count)
         if(count === 0)
         {
@@ -129,3 +127,7 @@ if (process.env.NODE_ENV !== 'production')
         ]
     })
 }
+
+ipc.on('addTask', (ent, arg) =>{
+    createAddWindow();
+});

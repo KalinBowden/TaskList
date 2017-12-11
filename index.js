@@ -12,18 +12,28 @@ var fs =  require('fs');
 const ipc = electron.ipcRenderer;
 console.log('index.js has loaded succsefuly');
 
-document.getElementById('start').addEventListener('click', _=> {
+/*document.getElementById('start').addEventListener('click', _=> {
     ipc.send('countdown-start');
-});
+});*/
 
 ipc.on('countdown', (evt, count) =>
 {
     document.getElementById('count').innerHTML = count;
 })
 
-document.getElementById('btn1').addEventListener('click', saveFile);
+/*document.getElementById('btn1').addEventListener('click', saveFile);*/
 
 function saveFile()
 {
     dialog.showSaveDialog((filename) => {});
+}
+
+//----------------------------------------------------------------------
+document.getElementById('add').addEventListener('click', _=>{
+    ipc.send('addTask');
+});
+
+function testMethod()
+{
+    console.log('it fires');
 }

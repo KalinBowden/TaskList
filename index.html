@@ -21,7 +21,7 @@
             <a href="#!" class="brand-logo"><i class="material-icons">face</i>Mr BeDapper</a>
             <ul class="right">
                 <li><a><i class="material-icons">cloud_download</i></a></li>
-                <li><a><i class="material-icons">backup</i></a></li>
+                <li><a><i class="material-icons" onclick="testMethod">backup</i></a></li>
                 <li><a><i class="material-icons">refresh</i></a></li>
                 <li><a><i class="material-icons">close</i></a></li>
             </ul>
@@ -32,7 +32,7 @@
 
       <div class="col s1 sidebar">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">account_circle</i></a>
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red" id="add"><i class="material-icons">add</i></a>
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete_sweep</i></a>
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">hearing</i></a>
       </div>
@@ -50,13 +50,14 @@
 
 <!-- normal script imports etc  -->
 <script src="scripts/jquery.min.js"></script>    
-<script src="scripts/vendor.js"></script>    
+<script src="scripts/vendor.js"></script>
+<script>require('./index.js')</script>
 
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
 <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <script>
-        responsiveVoice.speak("Hello Jordon. I am Mr BeDapper. Your personal assistant!", "UK English Male", {pitch: 1});
+        responsiveVoice.speak("Hello Jordon. I am Mr BeDapper. Your personal assistant! How may I help you today", "UK English Male", {pitch: 1});
         const electron = require('electron');
         const {ipcRenderer} = electron;
         const ul = document.querySelector('#task');
@@ -70,7 +71,6 @@
             document.querySelector('html').style.opacity = counter;
             document.querySelector('body').style.opacity = counter;
             document.querySelector('html').style.backgroundColor = 'rgba(152,251,152,'+counter/2+')';
-            console.log(counter);
         }, 100);
 
         

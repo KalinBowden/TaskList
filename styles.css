@@ -9,7 +9,6 @@ html
     /*background-color: lightgreen;*/
 
     background-color:rgba(152,251,152,0.3);
-    opacity: .2;
 }
 
 .btn-floating
@@ -22,5 +21,11 @@ html
 {
     text-align: center;
     padding-top: 1em;
-    height: max-content;
+}
+
+.add
+{
+    text-align: center;
+    padding: 1em;
+    background-color:rgba(152,251,152,1);
 }
