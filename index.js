@@ -12,6 +12,8 @@ var fs =  require('fs');
 const ipc = electron.ipcRenderer;
 console.log('index.js has loaded succsefuly');
 
+
+
 /*document.getElementById('start').addEventListener('click', _=> {
     ipc.send('countdown-start');
 });*/
@@ -33,7 +35,11 @@ document.getElementById('add').addEventListener('click', _=>{
     ipc.send('addTask');
 });
 
-function testMethod()
-{
-    console.log('it fires');
-}
+
+document.getElementById('clear').addEventListener('click', _=>{
+    ipc.send('item:clear');
+});
+
+document.getElementById('close').addEventListener('click', _=>{
+    ipc.send('app:close');
+})

@@ -29,3 +29,13 @@ html
     padding: 1em;
     background-color:rgba(152,251,152,1);
 }
+
+.task
+{
+    margin: .5em;
+}
+
+ul
+{
+    background-color: none;
+}

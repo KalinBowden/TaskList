@@ -95,20 +95,6 @@ const template =
         ]}
 ]
 
-ipc.on('countdown-start', (evt, arg) => 
-{
-    let count = 3;
-    let timer = setInterval(() =>
-    {
-        mainWindow.webContents.send('countdown', count)
-        if(count === 0)
-        {
-            clearInterval(timer);
-        }
-        count--;
-    }, 1000);
-})
-
 
 // Add developer tools when developing
 if (process.env.NODE_ENV !== 'production')
@@ -131,3 +117,12 @@ if (process.env.NODE_ENV !== 'production')
 ipc.on('addTask', (ent, arg) =>{
     createAddWindow();
 });
+
+
+ipc.on('item:clear', (ent, arg) =>{
+    mainWindow.webContents.send('item:clear');
+});
+
+ipc.on('app:close', (ent, arg) => {
+    app.quit();
+})
