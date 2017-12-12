@@ -100,8 +100,22 @@ function readFile(filepath)
         
         for (var i = 0; i < temp.table.length; i++)
         {
-            console.log('try again : ' + temp.table[i].task);
-            
+            console.log('try again: ' + temp.table[i].task);
+
+            var li = document.createElement('li');
+            li.classList.add('collection-item');
+            li.classList.add('z-depth-5');
+            li.classList.add('task');
+            li.innerHTML = 
+
+            '<div class="row">' +
+                        '<div class="col s6">'+temp.table[i].task+'</div>' +
+                        '<div class="col s1"></div>' +
+                        '<div class="col s1"></div>' +
+                        '<div class="col s4"></div>' +
+                    '</div>'
+                    
+            document.getElementById('task').appendChild(li);
         }
     })
 }
