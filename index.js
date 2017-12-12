@@ -27,7 +27,83 @@ ipc.on('countdown', (evt, count) =>
 
 function saveFile()
 {
-    dialog.showSaveDialog((filename) => {});
+    dialog.showSaveDialog((filename) => {
+        if (filename === undefined)
+        {
+            alert('You must give a file a name.');
+            return;
+        }
+
+        //
+        fs.writeFile(filename, createJSONTask(), (err)=>{
+            if(err)
+            {
+                console.log(err)
+            }
+            alert("The file has been saved!");
+        })
+    });
+}
+
+// Create JSON string
+function createJSONTask()
+{
+    //
+    var data = {}
+    data.table = [];
+    var JsonData;
+    var tasks = document.getElementById('task');
+
+    //
+    for (var i = 0; i < task.childElementCount; i++)
+    {
+        console.log(i);
+        console.log(task.children[i].children[0].children[0].innerHTML);
+        
+        data.table.push({'task': task.children[i].children[0].children[0].innerHTML});
+    }
+
+    //
+    JsonData = JSON.stringify(data);
+    console.log(JsonData.toString());
+
+    return JsonData;
+}
+
+//
+function openFile()
+{
+    dialog.showOpenDialog((filenames) => {
+        if(filenames === undefined)
+        {
+            alert("No files were selected");
+            return;
+        }
+
+        readFile(filenames[0]);
+    })
+}
+
+// JSOn dash file
+function readFile(filepath)
+{
+    fs.readFile(filepath, 'utf-8', (err,data) =>{
+        if(err){
+            alert('Oops... Looks like something went wrong');
+            return;
+        }
+
+        //
+        console.log('Results: ' + data);
+        temp = JSON.parse(data);
+        console.log(temp);    
+        
+        for (var i = 0; i < temp.table.length; i++)
+        {
+            console.log('try again : ' + temp.table[i].task);
+            
+        }
+    })
 }
 
 //----------------------------------------------------------------------
@@ -49,10 +125,12 @@ document.getElementById('account').addEventListener('click', _=>{
 
 document.getElementById('download').addEventListener('click', _=>{
     ipc.send('task:download');
+    openFile();
 });
 
 document.getElementById('upload').addEventListener('click', _=>{
-    ipc.send('task:upload')
+    ipc.send('task:upload');
+    saveFile();
 });
 
 document.getElementById('refresh').addEventListener('click', _=>{

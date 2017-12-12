@@ -151,10 +151,11 @@
         // Enable or disable the voice
         ipcRenderer.on('app:voice', _=>{
             responsiveVoice.speak("although it does not currently work. This button will eventualy allow you to. enable. or disable. my beautful voice", "UK English Male", {pitch: 1});
-        })
+            createJSONTask();
+        });
 
         // Remove a single task
-        ul.addEventListener('dblclick', removeItem)
+        ul.addEventListener('dblclick', removeItem);
 
         // Remove a single task
         function removeItem(e)
